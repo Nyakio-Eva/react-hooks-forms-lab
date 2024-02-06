@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 
-function Item({ name, category }) {
+function Item({ name, category,searchedItem }) {
   const [isInCart, setIsInCart] = useState(false);
 
   function handleAddToCartClick() {
     setIsInCart((isInCart) => !isInCart);
   }
+  
+ const isMatchingSearchItem = searchedItem === ""? true : name.includes(searchedItem);
 
+ if(!isMatchingSearchItem){
+  return null;
+ }
+    
   return (
     <li className={isInCart ? "in-cart" : ""}>
       <span>{name}</span>
